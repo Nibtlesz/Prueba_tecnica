@@ -1,7 +1,7 @@
 <h4>Prueba Técnica - Desarrollador Netsuite</h4>
 
-Postulante: Luis Emmanuel García Ostria
-Fecha: Febrero 2026
+Postulante: Luis Emmanuel García Ostria <br/>
+Fecha: Febrero 2026 <br/>
 
 <h4>1. Descripción general</h4>
 <p>
@@ -11,7 +11,7 @@ Fecha: Febrero 2026
 
 <h4>2. Alcance</h4>
 <p>
-    La solución cubre:
+    La solución cubre:<br/>
         - RESTlet.
         - Creación de ordenes de venta.
         - Muestra mensaje en caso de existir.
@@ -41,8 +41,8 @@ Fecha: Febrero 2026
 
 <h4>5. Endpoint RESTlet</h4>
 <p>
-    Método: POST.
-    JSON de ejemplo:
+    Método: POST.<br/>
+    JSON de ejemplo:<br/>
     {
         "externalId": "SO-EXT-100045",
         "customer": { "entityId": "CUST-001" },
@@ -57,23 +57,21 @@ Fecha: Febrero 2026
 
 <h4>6. Idempotencia</h4>
 <p>
-    La idempotencia se maneja buscando una órden de venta existente por externalId.
+    La idempotencia se maneja buscando una órden de venta existente por externalId.<br/>
         - Si no existe, se crea una nueva órden.
-        - Si existe, se manda un mensaje de órden existente.
-    
-    Esta decisión permite soportar escenarios reales como:
+        - Si existe, se manda un mensaje de órden existente.<br/>
+    Esta decisión permite soportar escenarios reales como: <br/>
         - Reintentos.
         - Correcciones de líneas o precios.
 </p>
 
 <h4>7. Validaciones</h4>
 <p>
-    Se validan los siguientes campos obligatorios:
+    Se validan los siguientes campos obligatorios:<br/>
         - externalId
         - customer.entityId
-        - lines (al menos una línea).
-
-    Si falta algún campo, el RESTlet responde con:
+        - lines (al menos una línea).<br/>
+    Si falta algún campo, el RESTlet responde con:<br/>
     {
         "status": "ERROR",
         "externalId": "SO-EXT-100045",
@@ -91,21 +89,19 @@ Fecha: Febrero 2026
 
 <h4>9. Registro de auditoria</h4>
 <p>
-    Por cada request (exitosa o fallida) se registra un log de auditoría con:
-	- externalId
-    - timestamp
-	- status (OK / ERROR)
-	- message resumido
-	- payloadSize (número de líneas)
-
-    En ambiente productivo se recomienda un custom record con los campos anteriormente mencionados.
-
+    Por cada request (exitosa o fallida) se registra un log de auditoría con:<br/>
+        - externalId
+        - timestamp
+        - status (OK / ERROR)
+        - message resumido
+        - payloadSize (número de líneas)<br/>
+    En ambiente productivo se recomienda un custom record con los campos anteriormente mencionados.<br/>
     En esta prueba se simuló el registro de auditoria a un custom record fictició, ya que no cuento con una instancia de pruebas.
 </p>
 
 <h4>10. Cómo probar</h4>
 <p>
-    En este caso el SDF no cuenta con un xml de despliegue para el RESTlet y tampoco con el objeto del custom Record para el registro de auditoria.
+    En este caso el SDF no cuenta con un xml de despliegue para el RESTlet y tampoco con el objeto del custom Record para el registro de auditoria.<br/>
     1.- Crear Custom Record para registros de auditoria
     2.- Desplegar el SDF en la instancia.
     3.- Desplegar el RESTlet en Netsuite.
